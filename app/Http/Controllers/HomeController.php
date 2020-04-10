@@ -40,7 +40,7 @@ class HomeController extends Controller
             'nick' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ]));
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user'))->with('success', 'Saved succesfully');
     }
 
 }

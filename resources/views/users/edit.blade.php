@@ -72,6 +72,9 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Save profile') }}
                                     </button>
+                                    @if(isset($success))
+                                        <button class="btn btn-success" disabled>{{$success}}</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
