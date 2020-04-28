@@ -21,7 +21,7 @@ class CreateAdvertsTable extends Migration
             $table->integer('category_id')
                 ->references('id')->on('categories');
             $table->string('title');
-            $table->string('descriprion');
+            $table->multiLineString('description');
             $table->unsignedFloat('price');
             $table->boolean('negotiation');
             $table->timestamps();

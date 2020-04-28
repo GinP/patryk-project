@@ -38,6 +38,16 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/adverts/create') }}">
+                                Add Advert
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/adverts') }}">
+                                Browse Adverts
+                            </a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -57,6 +67,9 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id.'/edit') }}">
                                         {{ __('Your Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('adverts/showyour') }}">
+                                        {{ __('Your Adverts') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
