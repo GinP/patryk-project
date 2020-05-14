@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
-
+use Auth;
+use Illuminate\Validation\Rule;
 class HomeController extends Controller
 {
     /**
@@ -25,4 +26,22 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(User $user)
+    {
+        $user->update(request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'nick' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'city' =>['string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+        ]));
+        return view('users.edit', compact('user'))->with('success', 'Saved succesfully');
+    }
+
 }
