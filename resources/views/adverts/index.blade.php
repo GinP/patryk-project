@@ -25,6 +25,8 @@
                 @empty
                     No adverts available
                 @endforelse
+
+                {{ $adverts->links() }}
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ class AdvertController extends Controller
 {
     public function index()
     {
-        $adverts = Advert::all();
+        $adverts = Advert::paginate(20);
         $categories = Category::all();
         return view('adverts.index', compact('adverts'))->with('categories', $categories);
     }
