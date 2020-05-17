@@ -11,6 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        \App\User::create([
+            'name' => 'admin',
+            'surname' => 'admin',
+            'nick' => 'admin',
+            'city' => 'test',
+            'email' => 'admin@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password')
+        ]);
+        factory(\App\User::class, 25)->create();
+        factory(\App\Category::class, 5)->create();
+        factory(\App\Advert::class, 100)->create();
     }
 }

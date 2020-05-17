@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="btn-group-lg">
                 @foreach($categories as $category)
-                        <form action="/adverts/{{ $category->id }}" method="post">
+                        <form action="{{ route('categories.filter', ['category' => $category->id]) }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-primary" name="id" value="{{ $category->id }}">{{ $category->name }}</button>
                         </form>

@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Add Advert') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ url('/adverts') }}" method="post">
+                        <form action="{{ route('adverts.store') }}" method="post">
                             @csrf
                             <div class="form-group col">
                                 <label for="title">Title</label>
@@ -70,7 +70,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary col">Add Advert</button>
-                        </form> </br>
+                        </form>
                     </div>
                 </div>
             </div>
