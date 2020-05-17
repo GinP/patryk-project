@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $advert->title }}</h5>
                         <p class="card-text">{{ $advert->description }}</p>
-                        <a href="{{ url('adverts/'.$advert->id.'/edit') }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('adverts.edit', ['advert' => $advert->id]) }}" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
                 @empty

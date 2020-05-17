@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Add Advert') }}</div>
 
                     <div class="card-body">
-                        <form action="/adverts/{{ $advert->id }}" method="post">
+                        <form action="{{ route('adverts.update', ['advert' => $advert->id]) }}" method="post">
                             @csrf
                             @method('PATCH')
                             <div class="form-group col">
@@ -71,7 +71,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary col">Change Advert</button>
-                        </form> </br>
+                        </form>
                     </div>
                 </div>
             </div>

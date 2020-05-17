@@ -1,22 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
-use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Validation\Rule;
+
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -44,4 +35,8 @@ class HomeController extends Controller
         return view('users.edit', compact('user'))->with('success', 'Saved succesfully');
     }
 
+    public function adverts() {
+        $data['adverts'] = Auth::user()->adverts()->get();
+        return view('adverts.showyour', $data);
+    }
 }

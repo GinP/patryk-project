@@ -19,18 +19,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/users/{user}/edit', 'HomeController@edit');
-Route::patch('/users/{user}/edit', 'HomeController@update');
+    Route::get('/users/{user}/edit', 'HomeController@edit')->name('users.edit');
+    Route::patch('/users/{user}/edit', 'HomeController@update')->name('users.update');
+    Route::get('/users/@me/adverts','HomeController@adverts')->name('users.adverts');
 
-Route::get('adverts','AdvertController@index');
-Route::get('adverts/create','AdvertController@create');
-Route::post('adverts','AdvertController@store');
-Route::get('adverts/showyour','AdvertController@showyour');
-Route::post('adverts/{category}','AdvertController@filter');
-Route::get('adverts/{advert}','AdvertController@show');
-Route::get('adverts/{advert}/edit','AdvertController@edit');
-Route::patch('adverts/{advert}','AdvertController@update');
-Route::delete('adverts/{advert}','AdvertController@destroy');
+    Route::get('/adverts/create','AdvertController@create')->name('adverts.create');
+    Route::post('/adverts','AdvertController@store')->name('adverts.store');
+    Route::get('/adverts/{advert}/edit','AdvertController@edit')->name('adverts.edit');
+    Route::patch('/adverts/{advert}','AdvertController@update')->name('adverts.update');
+    Route::delete('/adverts/{advert}','AdvertController@destroy')->name('adverts.destroy');
+});
+
+Route::get('/adverts','AdvertController@index')->name('adverts');
+Route::post('/categories/{category}','AdvertController@filter')->name('categories.filter');
+Route::get('/adverts/{advert}','AdvertController@show')->name('adverts.show');
 

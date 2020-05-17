@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Your Profile') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('users/'.$user->id.'/edit')  }}">
+                        <form method="POST" action="{{ route('users.edit', ['user' => $user->id]) }}">
                             @csrf
                             @method('PATCH')
                             <div class="form-group row">

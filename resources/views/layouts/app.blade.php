@@ -39,12 +39,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/adverts/create') }}">
+                            <a class="nav-link" href="{{ route('adverts.create') }}">
                                 Add Advert
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/adverts') }}">
+                            <a class="nav-link" href="{{ route('adverts') }}">
                                 Browse Adverts
                             </a>
                         </li>
@@ -65,10 +65,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id.'/edit') }}">
+                                    <a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::id()]) }}">
                                         {{ __('Your Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('adverts/showyour') }}">
+                                    <a class="dropdown-item" href="{{ route('users.adverts') }}">
                                         {{ __('Your Adverts') }}
                                     </a>
 

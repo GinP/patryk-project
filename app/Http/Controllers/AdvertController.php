@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use App\Http\Requests\Adverts\StoreRequest;
+use App\Http\Requests\Adverts\UpdateRequest;
 use Auth;
 use App\Advert;
-use Illuminate\Http\Request;
 
 class AdvertController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         $adverts = Advert::all();
@@ -25,12 +22,12 @@ class AdvertController extends Controller
         return view('adverts.create', compact('categories'));
     }
 
-    public function store()
+    public function store(StoreRequest $request)
     {
-        $data = $this->dataValidation();
-        $data += ['user_id' => Auth::user()->id];
+        $data = $request->validated();
+        $data += ['user_id' => Auth::id()];
         $advert = Advert::create($data);
-        return view('welcome');
+        return redirect()->route('adverts.edit', ['advert' => $advert->id]);
     }
 
     public function show(Advert $advert)
@@ -41,49 +38,31 @@ class AdvertController extends Controller
     public function edit(Advert $advert)
     {
         $categories = Category::all();
-        if ($advert->getOriginal('user_id') != Auth::user()->id)
-        {
+        if ($advert->getOriginal('user_id') != Auth::user()->id) {
             return view('home');
-        }else {
+        }
+        else {
             return view('adverts.edit', compact('advert'))->with('categories', $categories);
         }
 
     }
 
-    public function update(Advert $advert)
+    public function update(UpdateRequest $request, Advert $advert)
     {
-        $advert->update($this->dataValidation());
-        return redirect("/adverts/showyour");
+        $advert->update($request->validated());
+        return redirect()->route('users.adverts');
     }
 
     public function destroy(Advert $advert)
     {
         $advert->delete();
+        return redirect()->route('users.adverts');
+    }
 
-        return redirect('/adverts');
-    }
-    public function showyour()
-    {
-        $adverts = Advert::all()->where('user_id','=', Auth::user()->id);
-        return view('adverts.showyour', compact('adverts'));
-    }
     public function filter(Category $category)
     {
-        $categories = Category::all();
-        $adverts = Advert::all()->where('category_id', '=', request()->id);
-        return view('adverts.index', compact('adverts'))->with('categories', $categories);
+        $data['categories'] = Category::all();
+        $data['adverts'] = $category->adverts()->get();
+        return view('adverts.index', $data);
     }
-
-    protected function dataValidation()
-    {
-        $data = request()->validate([
-            'title' => 'string|required|min:3',
-            'description' => 'required|min:3|max:5000',
-            'price' => 'required|numeric',
-            'negotiation' => 'boolean',
-            'category_id' => 'required|numeric'
-        ]);
-        return $data;
-    }
-
 }
