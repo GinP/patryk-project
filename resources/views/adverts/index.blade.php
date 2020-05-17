@@ -4,16 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="btn-group-lg">
+                <div class="btn-group mb-1">
                 @foreach($categories as $category)
-                        <form action="{{ route('categories.filter', ['category' => $category->id]) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-primary" name="id" value="{{ $category->id }}">{{ $category->name }}</button>
-                        </form>
+                    <a class="btn btn-primary" href="{{ route('categories.filter', ['category' => $category->id]) }}">
+                        {{ $category->name }}
+                    </a>
                 @endforeach
                 </div>
                 @forelse($adverts as $advert)
-                    <div class="card">
+                    <div class="card mb-1">
                         <div class="card-header">
                             {{ $advert->price }} @if( $advert->negotiation === '1') To Negotiate @endif
                         </div>

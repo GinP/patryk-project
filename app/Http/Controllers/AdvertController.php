@@ -62,7 +62,7 @@ class AdvertController extends Controller
     public function filter(Category $category)
     {
         $data['categories'] = Category::all();
-        $data['adverts'] = $category->adverts()->get();
+        $data['adverts'] = $category->adverts()->paginate(20);
         return view('adverts.index', $data);
     }
 }

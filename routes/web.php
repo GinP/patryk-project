@@ -34,6 +34,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/adverts','AdvertController@index')->name('adverts');
-Route::post('/categories/{category}','AdvertController@filter')->name('categories.filter');
+Route::get('/categories/{category}','AdvertController@filter')->name('categories.filter');
 Route::get('/adverts/{advert}','AdvertController@show')->name('adverts.show');
 
