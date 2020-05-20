@@ -18,13 +18,15 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function edit(User $user)
+    public function edit()
     {
-        return view('users.edit', compact('user'));
+        $data['user'] = Auth::user();
+        return view('users.edit', $data);
     }
 
-    public function update(User $user)
+    public function update()
     {
+        $user = Auth::user();
         $user->update(request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],

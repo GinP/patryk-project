@@ -6,8 +6,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Add Advert') }}</div>
-
+                        <form class="" action="{{ route('adverts.destroy', ['advert' => $advert->id]) }}" method="post">
+                            <div class="card-header" style="line-height: 2.5">
+                                {{ __('Edit Advert') }}
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger float-lg-right m-0">Delete Advert</button>
+                            </div>
+                        </form>
                     <div class="card-body">
                         <form action="{{ route('adverts.update', ['advert' => $advert->id]) }}" method="post">
                             @csrf
@@ -69,8 +75,7 @@
                                     </span>
                                 @enderror
                             </div>
-
-                            <button type="submit" class="btn btn-primary col">Change Advert</button>
+                            <button type="submit" class="btn btn-primary col mb-2">Change Advert</button>
                         </form>
                     </div>
                 </div>
