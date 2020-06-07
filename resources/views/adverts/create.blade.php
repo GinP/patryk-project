@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Add Advert') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ route('adverts.store') }}" method="post">
+                        <form action="{{ route('adverts.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col">
                                 <label for="title">Title</label>
@@ -35,6 +35,7 @@
                                     </span>
                                 @enderror
                             </div>
+
                             <div class="form-group col">
                                 <label for="description">Description</label>
                                 <textarea class="form-control" value="{{ old('description') }}" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -44,11 +45,23 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="form-group col">
+                                <div class="custom-file">
+                                    <input type="file" name="images[]" class="file" id="images" data-show-upload="false" data-show-caption="true" multiple>
+                                </div>
+                                @error('images[]')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                             <div class="form-group col-3">
                                 <label for="price">Price</label>
                                 <input type="number" min="0" step="0.01" class="form-control" name="price" autocomplete="off" value="{{ old('price') }}">
                                 @error('price')
-                                <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -76,4 +89,5 @@
             </div>
         </div>
     </div>
+    @yield('scripts')
 @endsection

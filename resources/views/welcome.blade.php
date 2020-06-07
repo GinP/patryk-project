@@ -93,8 +93,8 @@
                     @else
                     <div class="links">
                         <a href="adverts">Browse Adverts</a>
-                        <a href="{{ url('users/'.Auth::user()->id.'/edit')  }}">Your Profile</a>
-                        <a href="{{ url('users/'.Auth::user()->id.'/edit')  }}">Your Adverts</a>
+                        <a href="{{ url('users/@me/edit')  }}">Your Profile</a>
+                        <a href="{{ url('users/@me/edit')  }}">Your Adverts</a>
                         <a href="adverts/create">Add Advert</a>
                     </div>
                 @endguest

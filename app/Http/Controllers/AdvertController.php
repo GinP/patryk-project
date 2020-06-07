@@ -13,7 +13,11 @@ class AdvertController extends Controller
     {
         $adverts = Advert::paginate(20);
         $categories = Category::all();
-        return view('adverts.index', compact('adverts'))->with('categories', $categories);
+        foreach ($adverts as $advert)
+        {
+            $images[] = $advert->getMedia('file');
+        }
+        return view('adverts.index', compact('adverts'))->with(['categories' => $categories, 'images' => $images]);
     }
 
     public function create()
@@ -27,12 +31,20 @@ class AdvertController extends Controller
         $data = $request->validated();
         $data += ['user_id' => Auth::id()];
         $advert = Advert::create($data);
+        if($request->images != NULL)
+        {
+            foreach ($request->images as $image)
+            {
+                $advert->addMedia($image)->toMediaCollection('file');
+            }
+        }
         return redirect()->route('adverts.edit', ['advert' => $advert->id]);
     }
 
     public function show(Advert $advert)
     {
-        return view('adverts.show', compact('advert'));
+        $images = $advert->getMedia('file');
+        return view('adverts.show', compact('advert'))->with('images', $images);
     }
 
     public function edit(Advert $advert)
@@ -42,7 +54,8 @@ class AdvertController extends Controller
             return view('home');
         }
         else {
-            return view('adverts.edit', compact('advert'))->with('categories', $categories);
+            $images = $advert->getMedia('file');
+            return view('adverts.edit', compact('advert'))->with(['categories'=> $categories, 'images' => $images]);
         }
 
     }
