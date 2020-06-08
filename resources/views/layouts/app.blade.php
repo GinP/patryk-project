@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7de5a2c49e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -40,11 +41,13 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('adverts.create') }}">
+                                <i class="fas fa-plus"></i>
                                 Add Advert
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('adverts') }}">
+                                <i class="fas fa-list-alt"></i>
                                 Browse Adverts
                             </a>
                         </li>
@@ -66,15 +69,18 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::id()]) }}">
+                                        <i class="fas fa-address-card"></i>
                                         {{ __('Your Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('users.adverts') }}">
+                                        <i class="fas fa-book-open"></i>
                                         {{ __('Your Adverts') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-power-off"></i>
                                         {{ __('Logout') }}
                                     </a>
 

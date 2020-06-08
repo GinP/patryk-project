@@ -76,6 +76,10 @@ class AdvertController extends Controller
     {
         $data['categories'] = Category::all();
         $data['adverts'] = $category->adverts()->paginate(20);
-        return view('adverts.index', $data);
+        foreach ($data['adverts'] as $advert)
+        {
+            $images[] = $advert->getMedia('file');
+        }
+        return view('adverts.index', $data)->with('images', $images);
     }
 }
