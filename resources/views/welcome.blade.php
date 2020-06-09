@@ -13,13 +13,15 @@
         <style>
             html, body {
                 background-color: #3C096C;
-                color: #636b6f;
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
             }
-
+            .links > a:hover{
+                color:gray;
+            }
             .full-height {
                 height: 100vh;
             }
@@ -49,7 +51,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: white;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -63,7 +65,7 @@
             }
         </style>
     </head>
-    <body>
+    <body style="background-image: url('https://vignette.wikia.nocookie.net/leagueoflegends/images/3/3e/Skarner_OriginalSquare.png/revision/latest?cb=20150402221137'); background-repeat: no-repeat;background-position: top center;">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

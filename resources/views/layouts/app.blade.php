@@ -24,6 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <img src="https://vignette.wikia.nocookie.net/leagueoflegends/images/3/3e/Skarner_OriginalSquare.png/revision/latest?cb=20150402221137" style="max-width: 25px; max-height: 25px;" class="rounded">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>

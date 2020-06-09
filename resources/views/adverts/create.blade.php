@@ -50,11 +50,6 @@
                                 <div class="custom-file">
                                     <input type="file" name="images[]" class="file" id="images" data-show-upload="false" data-show-caption="true" multiple>
                                 </div>
-                                @error('images[]')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
 
                             <div class="form-group col-3">

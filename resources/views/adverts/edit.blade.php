@@ -11,7 +11,7 @@
                             {{ __('Edit Advert') }}
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger float-right m-1">Delete Images</button>
+                            <button type="submit" class="btn btn-danger float-right m-1">Delete</button>
                         </form>
                     </div>
                     <div class="card-body">
