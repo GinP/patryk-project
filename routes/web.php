@@ -25,7 +25,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/@me/edit', 'HomeController@edit')->name('users.edit');
     Route::patch('/users/@me/edit', 'HomeController@update')->name('users.update');
     Route::get('/users/@me/adverts','HomeController@adverts')->name('users.adverts');
-
     Route::get('/adverts/create','AdvertController@create')->name('adverts.create');
     Route::post('/adverts','AdvertController@store')->name('adverts.store');
     Route::get('/adverts/{advert}/edit','AdvertController@edit')->name('adverts.edit');
